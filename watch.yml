@@ -9,15 +9,15 @@ watch:
         time_start: 19
         time_end: 22
         inOut:
-          - V
-          - F
-        coating2:
-          - 96
-          - 2095
-          - 94
-          - 1324
-          - 2016
-          - 92
+          - covered
+          - not-covered
+        coating:
+          - Gazon synthétique
+          - Résine
+          - Terre battue
+          - Béton poreux
+          - Bitume
+          - Synthétique
   recurrent:
     -   name: wednesday_noon
         day: wednesday
