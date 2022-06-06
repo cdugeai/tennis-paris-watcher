@@ -58,6 +58,16 @@ class TennisApiHandler {
         const data = await response.json();
         return data;
     }
+
+    // Is this court covered
+    static courtIsCovered(court){
+        return court._airCvt
+    }
+
+    // Is this court lighted
+    static courtIsLighted(court){
+        return court._airEcl
+    }
 }
 
 module.exports = TennisApiHandler;
