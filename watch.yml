@@ -1,15 +1,15 @@
 watch:
   unique:
-    - thursday_09:
+    -   name: thursday_09
         date: 09/06/2022
         time_start: 18
         time_end: 22
-    - friday_10:
+    -   name: friday_10
         date: 10/06/2022
         time_start: 19
         time_end: 22
   recurrent:
-    - wednesday_noon:
+    -   name: wednesday_noon
         day: wednesday
         time_start: 11
         time_end: 14
