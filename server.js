@@ -11,7 +11,7 @@ const CONFIG = {
 async function main() {
 
     // Load yaml config file
-    let yamlData = yaml.loadAndTransform('./schedule_config/watch.yml', false)
+    let yamlData = yaml.loadAndTransform('watch.yml', false)
 
 
     let all_schedules = yaml.getAllSchedules(yamlData);
