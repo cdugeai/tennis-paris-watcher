@@ -1,10 +1,12 @@
 watch:
   unique:
     -   name: thursday_09
+        enabled: true
         date: 09/06/2022
         time_start: 18
         time_end: 22
     -   name: friday_10
+        enabled: true
         date: 10/06/2022
         time_start: 19
         time_end: 22
@@ -20,8 +22,14 @@ watch:
           - Synthétique
   recurrent:
     -   name: wednesday_noon
+        enabled: true
         day: wednesday
         time_start: 11
         time_end: 14
         coating:
           - Résine
+    - name: tuesday_night
+      enabled: true
+      day: tuesday
+      time_start: 19
+      time_end: 22

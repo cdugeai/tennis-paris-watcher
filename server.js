@@ -11,18 +11,26 @@ const CONFIG = {
 async function main() {
 
     // Load yaml config file
-    let doc = yaml.load('./schedule_config/watch.yml')
+    let yamlData = yaml.loadAndTransform('./schedule_config/watch.yml', false)
 
-    // Work on this timeslot
-    let schedule1 = doc.watch.recurrent[0];
-    console.log(schedule1);
 
-    let apiResponse = await scheduleFinder.searchSchedule(schedule1)
+    let all_schedules = yaml.getAllSchedules(yamlData);
+    //console.log(all_schedules)
 
-    let availableCourts = tennisParis.getAvailableCourts(apiResponse);
-    let prettyCourts = tennisParis.prettifyCourts(availableCourts)
 
-    console.log(prettyCourts)
+    for (schedule of all_schedules) {
+
+        console.log(">> SCHEDULE: "+schedule.name)
+        let apiResponse = await scheduleFinder.searchSchedule(schedule)
+
+        let availableCourts = tennisParis.getAvailableCourts(apiResponse);
+        let prettyCourts = tennisParis.prettifyCourts(availableCourts)
+
+        //console.log(prettyCourts)
+
+        console.log(`Available slots for schedule ${schedule.name}: ${prettyCourts.length}`)
+    }
+
 
 }
 

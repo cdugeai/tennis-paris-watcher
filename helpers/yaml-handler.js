@@ -7,13 +7,26 @@ class YamlHandler {
     constructor() {
     }
 
-    static load(filepath) {
+    /**
+     * Get all schedules from the loaded yaml data
+     * @param yamlData_ yaml data from the loadAndTransform function
+     * @returns {FlatArray<(boolean|*)[], 1>[]} Array of all enabled schedules
+     */
+    static getAllSchedules(yamlData_){
+        return [
+            yamlData_.watch.unique,
+            yamlData_.watch.recurrent
+        ]
+            .flat()
+            .filter(s=>s.enabled);
+
+    }
+
+    static loadAndTransform(filepath, transformShowDiff=true) {
         // Get document, or throw exception on error
         try {
             let doc = yaml.load(fs.readFileSync(filepath, 'utf8'));
-            console.log(JSON.stringify(doc, null, 4))
-            doc = this.transformDataUnique(doc);
-            console.log(JSON.stringify(doc, null, 4))
+            doc = this.transformData(doc, transformShowDiff);
             return doc;
         } catch (e) {
             console.log(e);
@@ -21,13 +34,25 @@ class YamlHandler {
 
     }
 
-    static transformDataUnique(data){
+    /**
+     * Transforms some fields of the data according to the mapping table in 'schedule_config/allowed_values'
+     * - coating: coating name -> coating id
+     * - inOut: covering of the court
+     * - day: day of recurrent schedule
+     * @param data
+     * @param showDiff
+     * @returns {*}
+     */
+    static transformData(data, showDiff= true){
         let schedulesUnique = data.watch.unique;
         let schedulesRecurrent = data.watch.recurrent;
 
         let replaceValues = (schedules, mappingValues_covering, mappingValues_coating, mappingValues_days) => {
 
             return schedules.map(schedule => {
+
+                if (showDiff) console.log("::transform-old-value:")
+                if (showDiff) console.log(schedule)
 
                 // Replace covering values with mapping
                 if (schedule.inOut) {
@@ -50,6 +75,8 @@ class YamlHandler {
 
                 }
 
+                if (showDiff) console.log("::transform-new-value:")
+                if (showDiff) console.log(schedule)
 
                 return schedule;
             })
