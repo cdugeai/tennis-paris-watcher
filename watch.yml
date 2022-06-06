@@ -8,6 +8,8 @@ watch:
         date: 10/06/2022
         time_start: 19
         time_end: 22
+        coating: ["96","2095","94","1324","2016","92"]
+        inOut: ["V","F"]
   recurrent:
     -   name: wednesday_noon
         day: wednesday
