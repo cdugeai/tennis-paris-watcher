@@ -1,0 +1,25 @@
+{
+  "name": "tennis-paris-watcher",
+  "version": "1.0.0",
+  "description": "This project is a watcher for finding tennis courts in Paris according to your specific timeslots.",
+  "main": "server.js",
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "node-fetch": "^3.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdugeai/tennis-paris-watcher.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cdugeai/tennis-paris-watcher/issues"
+  },
+  "homepage": "https://github.com/cdugeai/tennis-paris-watcher#readme"
+}
