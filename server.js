@@ -19,11 +19,11 @@ async function main() {
 
     // Get data to post for this timeslot
     let postData = tennisParis.buildDataToPost(schedule1.time_start, schedule1.time_end, schedule1.date);
-    console.log(postData)
+    //console.log(postData)
 
     // Obtain the matching courts for this timeslot
     let apiResponse = await tennisParis.postData(postData);
-    console.log(apiResponse)
+    //apiResponse = tennisParis._filterUnique(apiResponse);
 
     let availableCourts = tennisParis.getAvailableCourts(apiResponse);
     let prettyCourts = tennisParis.prettifyCourts(availableCourts)

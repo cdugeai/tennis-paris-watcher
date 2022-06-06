@@ -70,6 +70,23 @@ class TennisApiHandler {
         return court._airEcl
     }
 
+    // Remove some features if a feature with the same name already exists
+    static _filterUnique(apiJson){
+
+        let features = apiJson.features;
+        //console.log(features.length)
+        function onlyUnique(value, index, self) {
+            let name = value.properties.general._nomSrtm;
+
+            return self.map(e=>e.properties.general._nomSrtm).indexOf(name) === index;
+        }
+        features = features.filter(onlyUnique);
+        //console.log(features.length)
+        apiJson.features = features;
+        return apiJson;
+    }
+
+
     // Get available courts
     static getAvailableCourts(apiJson){
         let apiJsonAvailable = Object.assign({}, apiJson);
