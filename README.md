@@ -1,4 +1,11 @@
-# Tennis Paris watcher
+
+<p align="center">
+  <img src="./res/paris_tennis.png" width="850" title="Authelia">
+</p>
+
+
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/cdugeai/tennis-paris-watcher)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/cdugeai/tennis-paris-watcher)
 
 This project is a watcher for finding tennis courts in Paris according to your specific timeslots.
 
