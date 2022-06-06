@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="./res/paris_tennis.png" width="850" title="Authelia">
+  <img src="./res/paris_tennis.png" width="850" title="parisTennis">
 </p>
 
 
