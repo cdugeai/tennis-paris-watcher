@@ -81,7 +81,6 @@ class TennisApiHandler {
     // Select some properties, and add url to detailed planning
     static prettifyCourts(apiJson){
         return apiJson.features
-            .filter(e => e.properties.available)
             .map(e2 => e2.properties.general)
             .map(e3 => {
                 return {
