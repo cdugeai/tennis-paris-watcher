@@ -25,7 +25,7 @@ class YamlHandler {
         let schedulesUnique = data.watch.unique;
         let schedulesRecurrent = data.watch.recurrent;
 
-        let replaceValues = (schedules, mappingValues_covering, mappingValues_coating) => {
+        let replaceValues = (schedules, mappingValues_covering, mappingValues_coating, mappingValues_days) => {
 
             return schedules.map(schedule => {
 
@@ -43,12 +43,20 @@ class YamlHandler {
 
                 }
 
+                // Replace day values with mapping
+                if (schedule.day) {
+                    schedule.day = mappingValues_days[schedule.day];
+                    if (!schedule.day) throw new Error("Unknown day value in yml. Allowed values are: "+JSON.stringify(Object.keys(mappingValues_days)))
+
+                }
+
+
                 return schedule;
             })
         }
 
-        data.watch.unique = replaceValues(schedulesUnique, ALLOWED_VALUES.covering, ALLOWED_VALUES.coating);
-        data.watch.recurrent = replaceValues(schedulesRecurrent, ALLOWED_VALUES.covering, ALLOWED_VALUES.coating);
+        data.watch.unique = replaceValues(schedulesUnique, ALLOWED_VALUES.covering, ALLOWED_VALUES.coating, ALLOWED_VALUES.day);
+        data.watch.recurrent = replaceValues(schedulesRecurrent, ALLOWED_VALUES.covering, ALLOWED_VALUES.coating, ALLOWED_VALUES.day);
 
         return data;
     }

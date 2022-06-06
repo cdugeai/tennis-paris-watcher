@@ -14,10 +14,10 @@ async function main() {
     let doc = yaml.load('./schedule_config/watch.yml')
 
     // Work on this timeslot
-    let schedule1 = doc.watch.unique[1];
+    let schedule1 = doc.watch.recurrent[0];
     console.log(schedule1);
 
-    let apiResponse = await scheduleFinder.searchUniqueSchedule(schedule1)
+    let apiResponse = await scheduleFinder.searchSchedule(schedule1)
 
     let availableCourts = tennisParis.getAvailableCourts(apiResponse);
     let prettyCourts = tennisParis.prettifyCourts(availableCourts)
