@@ -23,3 +23,5 @@ watch:
         day: wednesday
         time_start: 11
         time_end: 14
+        coating:
+          - Résine

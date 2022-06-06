@@ -11,7 +11,7 @@ const CONFIG = {
 async function main() {
 
     // Load yaml config file
-    let doc = yaml.load('watch.yml')
+    let doc = yaml.load('./schedule_config/watch.yml')
 
     // Work on this timeslot
     let schedule1 = doc.watch.unique[1];
