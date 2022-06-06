@@ -1,9 +1,10 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const ALLOWED_VALUES = require('../schedule_config/allowed_values')
 
 class TennisApiHandler {
 
-    static coating_all= ["96","2095","94","1324","2016","92"]
-    static inOut_default= ["V", "F"]
+    static coating_all= Object.values(ALLOWED_VALUES.coating)
+    static inOut_default= Object.values(ALLOWED_VALUES.covering)
     static apiBaseUrl= "https://tennis.paris.fr/tennis/jsp/site/Portal.jsp?page=recherche&action=ajax_disponibilite_map"
     static planningBaseUrl = "https://tennis.paris.fr/tennis/jsp/site/Portal.jsp?page=recherche&view=planning&name_tennis="
 
@@ -25,9 +26,13 @@ class TennisApiHandler {
             selCoating: coating,
             selInOut: inOut
         }
+
     }
 
     static async postData(postData){
+
+        // Actual parameters sent to the API
+        console.log("USED PARAMETERS: "+JSON.stringify(postData))
 
         // ## Building the data to post (application/x-www-form-urlencoded format)
         let params = new URLSearchParams();
