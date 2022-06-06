@@ -4,7 +4,8 @@ class TennisApiHandler {
 
     static coating_all= ["96","2095","94","1324","2016","92"]
     static inOut_default= ["V", "F"]
-    static baseUrl= "https://tennis.paris.fr/tennis/jsp/site/Portal.jsp?page=recherche&action=ajax_disponibilite_map"
+    static apiBaseUrl= "https://tennis.paris.fr/tennis/jsp/site/Portal.jsp?page=recherche&action=ajax_disponibilite_map"
+    static planningBaseUrl = "https://tennis.paris.fr/tennis/jsp/site/Portal.jsp?page=recherche&view=planning&name_tennis="
 
 
     constructor() {
@@ -49,7 +50,7 @@ class TennisApiHandler {
         }
 
         // ## Posting the data
-        const response = await fetch(this.baseUrl, {
+        const response = await fetch(this.apiBaseUrl, {
             method: 'POST',
             body: params.toString(),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -67,6 +68,28 @@ class TennisApiHandler {
     // Is this court lighted
     static courtIsLighted(court){
         return court._airEcl
+    }
+
+    // Get available courts
+    static getAvailableCourts(apiJson){
+        let apiJsonAvailable = Object.assign({}, apiJson);
+        apiJsonAvailable.features = apiJson.features
+            .filter(e => e.properties.available)
+        return apiJsonAvailable
+    }
+
+    // Select some properties, and add url to detailed planning
+    static prettifyCourts(apiJson){
+        return apiJson.features
+            .filter(e => e.properties.available)
+            .map(e2 => e2.properties.general)
+            .map(e3 => {
+                return {
+                    name: e3._nomSrtm,
+                    url: this.planningBaseUrl+e3._nomSrtm,
+                    address: e3._adresse + " " + e3._codePostal
+                }
+            })
     }
 }
 

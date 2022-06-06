@@ -22,8 +22,13 @@ async function main() {
     console.log(postData)
 
     // Obtain the matching courts for this timeslot
-    let matchingCourts = await tennisParis.postData(postData);
-    console.log(matchingCourts)
+    let apiResponse = await tennisParis.postData(postData);
+    console.log(apiResponse)
+
+    let availableCourts = tennisParis.getAvailableCourts(apiResponse);
+    let prettyCourts = tennisParis.prettifyCourts(availableCourts)
+
+    console.log(prettyCourts)
 
 }
 
